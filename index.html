@@ -19,7 +19,7 @@
             align-items: center;
             height: 100vh;
             font-family: 'Poppins', sans-serif;
-            color: white;
+            color: white; /* Default text color */
         }
         .container {
             background: rgba(180, 180, 180, 0.25);
@@ -58,5 +58,46 @@
         <div class="title">muffin717</div>
         <p class="intro">Welcome, I'm Muffin. Learning JS and Linux. UI design is my passion. Love synthwave and Inabakumori. Arena FIDE Master and also a micronationalist ;)</p>
     </div>
+
+    <script>
+        // Function to calculate the brightness of an image
+        function getImageBrightness(url, callback) {
+            var img = new Image();
+            img.src = url;
+            img.onload = function() {
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                context.drawImage(img, 0, 0);
+
+                var pixelData = context.getImageData(0, 0, canvas.width, canvas.height);
+                var pixels = pixelData.data;
+                var r = 0, g = 0, b = 0;
+
+                for (var i = 0; i < pixels.length; i += 4) {
+                    r += pixels[i];     // Red
+                    g += pixels[i + 1]; // Green
+                    b += pixels[i + 2]; // Blue
+                }
+
+                var pixelCount = pixels.length / 4;
+                r = r / pixelCount;
+                g = g / pixelCount;
+                b = b / pixelCount;
+
+                var brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b; // Luminosity formula
+                callback(brightness);
+            };
+        }
+
+        // Set text color based on brightness
+        getImageBrightness('im_the_rain.gif', function(brightness) {
+            var textColor = brightness < 128 ? 'white' : 'black'; // If brightness is low, set white text, otherwise black
+            document.body.style.color = textColor;
+            document.querySelector('.title').style.color = textColor;
+            document.querySelector('.intro').style.color = textColor;
+        });
+    </script>
 </body>
 </html>
