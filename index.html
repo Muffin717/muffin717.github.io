@@ -32,6 +32,7 @@
             text-align: center;
             backdrop-filter: blur(10px);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            position: relative; /* Add relative positioning */
         }
         .profile-pic {
             width: 120px;
@@ -50,6 +51,23 @@
             max-width: 400px;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
         }
+        .icons-bar {
+            position: absolute;
+            top: 100%; /* Position directly under the container */
+            width: 100%;
+            background: rgba(50, 50, 50, 0.8);
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            margin-top: 10px; /* Add thin space between the container and the bar */
+        }
+        .icons-bar img {
+            width: 40px;
+            height: 40px;
+        }
     </style>
 </head>
 <body>
@@ -57,6 +75,11 @@
         <img src="inaba.jpg" alt="Profile Picture" class="profile-pic">
         <div class="title">muffin717</div>
         <p class="intro">Welcome, I'm Muffin. Learning JS and Linux. UI design is my passion. Love synthwave and Inabakumori. Arena FIDE Master and also a micronationalist ;)</p>
+        <div class="icons-bar">
+            <img src="arch-linux.png" alt="Arch Linux">
+            <img src="javascript-fill.svg" alt="JavaScript">
+            <img src="firefox-browser-fill.svg" alt="Firefox">
+        </div>
     </div>
 </body>
 </html>
